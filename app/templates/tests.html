@@ -1,0 +1,68 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    {% include 'menu.html' %}
+    {% if not table %}
+        <div class="account">
+            <p>У вас нет группы</p>
+        </div>
+    {% else %}
+        {% if role == 'instructors' -%}
+            <div class="db-form">
+                <p>Изменить результаты теста</p>
+                <form action="/tests" method="POST">
+                    <select size="1" required name="student">
+                    <option selected disabled>Выберите ученика</option>
+                    {% for raw in table|groupby('num_group') -%}
+                        {% for v in raw.list|sort(attribute='last_name') -%}
+                            <option value="{{v['lgn']}}">{{ "{} - {} {} {}".format(raw.grouper, v['last_name'], v['first_name'], v['middle_name']) }}</option>
+                        {% endfor %}
+                    {% endfor %}
+                    </select>
+                    <select size="1" required name="test">
+                        <option selected disabled>Выберите тест</option>
+                        <option value="test_1">Тест 1</option>
+                        <option value="test_2">Тест 2</option>
+                        <option value="test_3">Тест 3</option>
+                        </select>
+                    <input type="text" placeholder="Введите балл" required name="mark">
+                    <button>Отправить</button>
+                </form>
+            </div>
+        {% endif -%}
+        <div class="datagrid">
+        <table>
+            <thead>
+                <tr>
+                    {% if role == 'instructors' -%}
+                        <th>Группа</th>
+                        <th>ФИО</th>
+                    {% endif -%}
+                    <th>Тест №1</th>
+                    <th>Тест №2</th>
+                    <th>Тест №3</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for raw in table|groupby('num_group') -%}
+                    {% if role == 'instructors' -%}
+                        <tr>
+                            <td rowspan="{{raw.list | length + 1}}">{{raw.grouper}}</td>
+                        </tr>
+                    {% endif %}
+                    {% for v in raw.list|sort(attribute='last_name') -%}
+                    <tr>
+                        {% if role == 'instructors' -%}
+                            <td>{{ "{} {} {}".format(v['last_name'], v['first_name'], v['middle_name']) }}</td>
+                        {% endif %}
+                        <td>{{v['test_1']}}</td>
+                        <td>{{v['test_2']}}</td>
+                        <td>{{v['test_3']}}</td>
+                    </tr>
+                    {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+{% endif %}
+{% endblock %}

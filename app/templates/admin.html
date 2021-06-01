@@ -1,0 +1,216 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <form class="db-form" action="/logout">
+        <button>Выйти</button>
+    </form>
+    <div class="db-form">
+        <p>Добавить инструктора</p>  
+        <form action="/admin" method="POST">
+            <input type="hidden" name="type" value="ins_inst">
+            <input type="text" required placeholder="Фамилия" name="last_name">
+            <input type="text" required placeholder="Имя" name="first_name">
+            <input type="text" placeholder="Отчество" name="middle_name">
+            <input type="text" required placeholder="Телефон" name="phone">
+            <input type="text" required placeholder="Логин" name="login">
+            <input type="text" required placeholder="Пароль" name="pwd">
+            <p></p>
+            <button>Отправить</button>
+        </form>
+    </div>
+    <div class="db-form">
+        <p>Добавить группу</p>
+        <form action="/admin" method="POST">
+            <input type="hidden" name="type" value="ins_group">
+            <input type="text" required placeholder="Имя группы" name="num_group">
+            <select size="1" required name="login">
+                <option selected disabled>Выберите инструктора</option>
+                {% for v in inst|sort(attribute='last_name')-%}
+                    <option value="{{v['lgn']}}">{{"{} {} {}-{}".format(v['last_name'], v['first_name'], v['middle_name'], v['lgn']) }}</option>
+                {% endfor %}
+            </select>    
+            <input type="text" placeholder="Понедельник" name="mon">
+            <input type="text" placeholder="Вторник" name="tue">
+            <input type="text" placeholder="Среда" name="wed">
+            <input type="text" placeholder="Четверг" name="thu">
+            <input type="text" placeholder="Пятница" name="fri">
+            <input type="text" placeholder="Суббота" name="sat">
+            <input type="text" placeholder="Воскресенье" name="sun">
+            <p></p>
+            <button>Отправить</button>
+        </form>
+    </div>
+    <div class="db-form">
+        <p>Добавить студента</p>
+        <form action="/admin" method="POST">
+            <input type="hidden" name="type" value="ins_stud">
+            <input type="text" required placeholder="Фамилия" name="last_name">
+            <input type="text" required placeholder="Имя" name="first_name">
+            <input type="text" placeholder="Отчество" name="middle_name">
+            <input type="text" required placeholder="Номер телефона" name="phone">
+            <select size="1" required name="num_group">
+                <option selected disabled>Выберите группу</option>
+                {% for v in num_group|sort(attribute='num_group')-%}
+                    <option value="{{v['num_group']}}">{{v['num_group']}}</option>
+                {% endfor %}
+            </select>
+            <input type="text" required placeholder="Логин" name="login">
+            <input type="text" required placeholder="Пароль" name="pwd">
+            <p></p>
+            <button>Отправить</button>
+        </form>
+    </div>
+    <div class="db-form">
+        <p>Изменить данные инструктора</p>
+        <form action="/admin" method="POST">
+            <input type="hidden" name="type" value="upd_inst">
+            <select size="1" required name="login">
+                <option selected disabled>Выберите инструктора</option>
+                {% for v in inst|sort(attribute='last_name')-%}
+                    <option value="{{v['lgn']}}">{{"{} {} {}-{}".format(v['last_name'], v['first_name'], v['middle_name'], v['lgn'])}}</option>
+                {% endfor %}
+            </select>   
+            <select size="1" required name="field">
+                <option selected disabled>Выберите поле</option>
+                <option value="last_name">Фамилия</option>
+                <option value="first_name">Имя</option>
+                <option value="middle_name">Отчество</option>
+                <option value="phone">Номер телефона</option>
+                <option value="pwd">Пароль</option>
+            </select>
+            <input type="text" required placeholder="Данные" name="data">
+            <p></p>
+            <button>Отправить</button>
+        </form>
+    </div>
+    <div class="db-form">
+        <p>Изменить данные студента</p>
+        <form action="/admin" method="POST">
+            <input type="hidden" name="type" value="upd_stud">
+            <select size="1" required name="login">
+                <option selected disabled>Выберите студента</option>
+                {% for v in stud|sort(attribute='last_name')-%}
+                    <option value="{{v['lgn']}}">{{"{} {} {}-{}".format(v['last_name'], v['first_name'], v['middle_name'], v['lgn']) }}</option>
+                {% endfor %}
+            </select>   
+            <select size="1" required name="field">
+                <option selected disabled>Выберите поле</option>
+                <option value="last_name">Фамилия</option>
+                <option value="first_name">Имя</option>
+                <option value="middle_name">Отчество</option>
+                <option value="phone">Номер телефона</option>
+                <option value="pwd">Пароль</option>
+            </select>
+            <input type="text" required placeholder="Данные" name="data">
+            <p></p>
+            <button>Отправить</button>
+        </form>
+    </div>
+    <div class="db-form">
+        <p>Изменить расписание группы</p>
+        <form action="/admin" method="POST">
+            <input type="hidden" name="type" value="upd_group">
+            <select size="1" required name="login">
+                <option selected disabled>Выберите группу</option>
+                {% for v in num_group|sort(attribute='num_group')-%}
+                    <option value="{{v['num_group']}}">{{v['num_group']}}</option>
+                {% endfor %}
+            </select>   
+            <select size="1" required name="field">
+                <option selected disabled>Выберите поле</option>
+                <option value="mon">Понедельник</option>
+                <option value="tue">Вторник</option>
+                <option value="wed">Среда</option>
+                <option value="thu">Четверг</option>
+                <option value="fri">Пятница</option>
+                <option value="sat">Суббота</option>
+                <option value="sun">Воскресенье</option>
+            </select>
+            <input type="text" required placeholder="Данные" name="data">
+            <p></p>
+            <button>Отправить</button>
+        </form>
+    </div>
+    <div class="db-form">
+        <p>Перевести студента в другую группу</p>
+        <form action="/admin" method="POST">
+            <input type="hidden" name="type" value="chg_group">
+            <select size="1" required name="login">
+                <option selected disabled>Выберите студента</option>
+                {% for v in stud|sort(attribute='last_name')-%}
+                    <option value="{{v['lgn']}}">{{"{} {} {}-{}".format(v['last_name'], v['first_name'], v['middle_name'], v['lgn'])}}</option>
+                {% endfor %}
+            </select>   
+            <select size="1" required name="data">
+                <option selected disabled>Выберите группу</option>
+                {% for v in num_group|sort(attribute='num_group')-%}
+                    <option value="{{v['num_group']}}">{{v['num_group']}}</option>
+                {% endfor %}
+            </select>
+            <p></p>
+            <button>Отправить</button>
+        </form>
+    </div>
+    <div class="db-form">
+        <p>Сменить инструктора в группе</p>
+        <form action="/admin" method="POST">
+            <input type="hidden" name="type" value="chg_inst">
+            <select size="1" required name="num_group">
+                <option selected disabled>Выберите группу</option>
+                {% for v in num_group|sort(attribute='num_group')-%}
+                    <option value="{{v['num_group']}}">{{v['num_group']}}</option>
+                {% endfor %}
+            </select>   
+            <select size="1" required name="data">
+                <option selected disabled>Выберите инструктора</option>
+                {% for v in inst|sort(attribute='last_name')-%}
+                    <option value="{{v['lgn']}}">{{"{} {} {}-{}".format(v['last_name'], v['first_name'], v['middle_name'], v['lgn']) }}</option>
+                {% endfor %}
+            </select>
+            <p></p>
+            <button>Отправить</button>
+        </form>
+    </div>
+    <div class="db-form">
+        <p>Удалить инструктора</p>
+        <form action="/admin" method="POST">
+            <input type="hidden" name="type" value="del_inst">
+            <select size="1" required name="login">
+                <option selected disabled>Выберите инструктора</option>
+                {% for v in inst|sort(attribute='last_name')-%}
+                    <option value="{{v['lgn']}}">{{"{} {} {}-{}".format(v['last_name'], v['first_name'], v['middle_name'], v['lgn'] )}}</option>
+                {% endfor %}
+            </select>
+            <p></p>   
+            <button>Удалить</button>
+        </form>
+    </div>
+    <div class="db-form">
+        <p>Удалить студента</p>
+        <form action="/admin" method="POST">
+            <input type="hidden" name="type" value="del_stud">
+            <select size="1" required name="login">
+                <option selected disabled>Выберите студента</option>
+                {% for v in stud|sort(attribute='last_name')-%}
+                    <option value="{{v['lgn']}}">{{"{} {} {}-{}".format(v['last_name'], v['first_name'], v['middle_name'], v['lgn'] )}}</option>
+                {% endfor %}
+            </select>
+            <p></p>   
+            <button>Удалить</button>
+        </form>
+    </div>
+    <div class="db-form">
+        <p>Удалить группу</p>
+        <form action="/admin" method="POST">
+            <input type="hidden" name="type" value="del_group">
+            <select size="1" required name="num_group">
+                <option selected disabled>Выберите группу</option>
+                {% for v in num_group|sort(attribute='num_group')-%}
+                    <option value="{{v['num_group']}}">{{v['num_group']}}</option>
+                {% endfor %}
+            </select>
+            <p></p>
+            <button>Удалить</button>
+        </form>
+    </div>
+{% endblock %}

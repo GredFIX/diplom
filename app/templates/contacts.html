@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+
+{% block content %}
+	{% include 'menu.html' %}
+	{% if not table %}
+		<div class="account">
+			<p>У вас нет контактов</p>
+		</div>
+	{% else %}
+		<div class="datagrid">
+		<table>
+			<thead>
+				<tr>
+					{% if role == 'instructors' -%}
+						<th>Группа</th>
+					{% endif %}
+					<th>ФИО</th>
+					<th>Номер телефона</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for raw in table|groupby('num_group') -%}
+					{% if role == 'instructors' -%}
+						<tr>
+							<td rowspan="{{raw.list | length + 1}}">{{raw.grouper}}</td>
+						</tr>
+					{% endif %}
+					{% for v in raw.list|sort(attribute='last_name') -%}
+					<tr>
+						<td>{{ "{} {} {}".format(v['last_name'], v['first_name'], v['middle_name']) }}</td>
+						<td>{{ v['phone'] }}</td>	
+					</tr>
+					{% endfor %}
+				{% endfor %}
+			</tbody>
+		</table>
+		</div>
+	{% endif %}
+{% endblock %}

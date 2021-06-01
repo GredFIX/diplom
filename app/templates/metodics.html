@@ -1,0 +1,10 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    {% include 'menu.html' %}
+    <div class="link">
+        <p><a href="{{ url_for('static', filename='files/ekz.pdf')}}" download>Все для экзамена в ГИБДД</a></p>
+        <p><a href="{{ url_for('static', filename='files/pdd2021.pdf')}}" download>Правила дорожного движения (2021)</a></p> 
+        <p><a href="{{ url_for('static', filename='files/pdd_photo.pdf')}}" download>Правила дорожного движения с картинками</a></p>
+    </div>
+{% endblock %}

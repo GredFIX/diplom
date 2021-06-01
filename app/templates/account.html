@@ -1,0 +1,14 @@
+{% extends 'main.html' %}
+
+{% block content %}
+	{% include 'menu.html' %}
+	<div class="account">
+		<p>{{"{} {} {}".format(info['last_name'], info['first_name'], info['middle_name'])}}</p>
+		{% if role == 'instructors' -%}
+			<p>Инструктор</p>
+		{% else %}
+			<p>Ученик группы {{info['num_group']}}</p>
+		{% endif %}
+		<p>Номер телефона: {{info['phone']}}</p>
+	</div> 
+{% endblock %}

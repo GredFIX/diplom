@@ -1,0 +1,229 @@
+* {
+	margin: 0 auto;
+}
+
+body {
+	width: 70%;
+	background: linear-gradient(90deg, #b9deed, #d8f3fc);
+}
+
+p {
+	text-align: center;
+}
+
+/* Авторизация */
+.login-form {
+  background: #FFFFFF;
+  max-width: 200px;
+  margin-top: 100px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.login-form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.login-form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #114477;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.login-form button:hover,.login-form button:active,.login-form button:focus {
+  background: #b9deed;
+}
+
+/* Личный кабинет */
+.account {
+	background: #FFFFFF;
+	width: 70%;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+	margin-top: 30px;
+}
+.account p {
+	text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
+	padding: 10px;
+	text-align: center;
+	font-family: "Roboto", sans-serif;
+	font-size: 24px;
+}
+
+/* Меню */
+ul.css-menu-3 {
+	text-align: center;
+	font: normal 20px/150% Arial, Helvetica, sans-serif;
+	list-style: none;
+	border-bottom: 5px solid #bb0000;
+	border-top: 1px solid #114477;
+	padding: 11px;
+	background: #336699
+}
+
+ul.css-menu-3 li {
+	display: inline
+}
+
+ul.css-menu-3 li a {
+	color: #fefefe;
+	text-decoration: none;
+	background: #225588;
+	border: 1px solid #225588;
+	border-bottom: 1px solid #114477;
+	padding: 10px 14px 10px 14px
+}
+
+ul.css-menu-3 li a:hover {
+	border-left: 1px solid #114477; 
+	border-right: 1px solid #114477
+}
+
+ul.css-menu-3 li a.selected {
+	color: #fefefe;
+	background: #bb0000;
+	border: 1px #cc0000 solid;
+	border-bottom: 1px solid #bb0000;
+	border-left: 1px solid #770000;
+	padding: 10px 14px 10px 14px
+}
+
+/* Методички */
+.link {
+	background: #FFFFFF;
+	width: 70%;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+	margin-top: 30px;
+}
+
+.link p {
+	text-align: left;
+	padding: 15px;
+}
+
+.link a {
+	font-family: "Roboto", sans-serif;
+    position: relative;
+    text-decoration: none;
+    color: #000000;
+    display: inline-block;
+	font-size: 20px;
+}
+.link a::before,
+.link a::after {
+    content: '';
+    position: absolute;
+    transition: transform .5s ease;
+    left: -4px;
+    top: 0;
+    width: calc(100% + 8px);
+    height: 100%;
+    border-style: solid;
+    border-color: #337AB7;
+    box-sizing: border-box;
+}
+.link a::before {
+    border-width: 2px 0 2px 0;
+    transform: scaleX(0);
+}
+.link a::after {
+    border-width: 0 2px 0 2px;
+    transform: scaleY(0);
+}
+.link a:hover::before,
+.link a:hover::after {
+    transform: scale(1, 1);
+}
+
+/* Таблицы */
+.datagrid table {
+	border-collapse: collapse; 
+	text-align: center; 
+} 
+
+.datagrid {
+	margin-top: 50px;
+	width: 100%;
+	font: normal 12px/150% Arial, Helvetica, sans-serif;  
+}
+
+.datagrid table td, .datagrid table th { 
+	padding: 5px 15px; 
+}
+
+.datagrid table thead th {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #006699), color-stop(1, #114477) );
+	background:-moz-linear-gradient( center top, #006699 5%, #114477 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#114477');
+	background-color:#006699;
+	color:#FFFFFF; 
+	font-size: 20px; 
+	font-weight: bold; 
+	border: 1px solid #000000; 
+} 
+
+.datagrid table tbody td {
+	background-color: #FFFFFF; 
+	color: #00496B; 
+	border: 1px solid #000000;
+	font-size: 18px;
+	font-weight: normal; 
+}
+
+/* Формы для изменения данных в БД */
+.db-form {
+	background: #FFFFFF;
+	width: 65%;
+	margin-top: 20px;
+	padding: 10px;
+	text-align: center;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.db-form p {
+	font-family: "Roboto", sans-serif;
+	text-align: left;
+	padding: 10px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.db-form input {
+	font-family: "Roboto", sans-serif;
+	background: #FFFFFF;
+	box-sizing: border-box;
+	font-size: 14px;
+}
+
+.db-form select {
+	font-family: "Roboto", sans-serif;
+	background: #FFFFFF;
+	box-sizing: border-box;
+	font-size: 14px;
+}
+
+.db-form button {
+	font-family: "Roboto", sans-serif;
+	text-transform: uppercase;
+	background: #114477;
+	color: #FFFFFF;
+	font-size: 14px;
+	-webkit-transition: all 0.3 ease;
+	transition: all 0.3 ease;
+	cursor: pointer;
+}
+ 
